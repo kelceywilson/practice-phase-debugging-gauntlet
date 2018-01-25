@@ -5,8 +5,8 @@ module.exports = function getOwnersByPetId(petId) {
   SELECT name
   FROM owners AS o
   JOIN petowners AS po
-  ON o.id = po.owner_id
+  ON o.owner_id = po.owner_id
   WHERE po.pet_id = $1
   `
-  db.query(query, [petId])
+  return db.any(query, [petId])
 }
